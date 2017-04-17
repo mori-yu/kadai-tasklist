@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 	#トップページ
-	root to: 'task#index'
+	root to: 'tasks#index'
 	
 	#RESTful
-	resources :task
+	resources :tasks
 end
