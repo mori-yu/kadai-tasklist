@@ -1,11 +1,17 @@
 class TasksController < ApplicationController
 	before_action :require_user_logged_in, only: [:show, :new, :edit]
+	#before_action :current_user, only: [:show, :new, :edit]
 	def index
-		@tasks = Task.all
+		if logged_in?
+			@tasks = Task.where(user_id: current_user.id)
+		else
+			@tasks = Task.all
+		end
 	end
 	
 	def show
 		@task = Task.find(params[:id])
+		task_user_c
 	end
 	
 	def new
@@ -14,6 +20,7 @@ class TasksController < ApplicationController
 	
 	def create
 		@task = Task.new(task_params)
+		@task.user_id = params[:user_id] 
 
     if @task.save
       flash[:success] = 'Task が正常に投稿されました'
@@ -26,6 +33,7 @@ class TasksController < ApplicationController
 	
 	def edit
 		@task = Task.find(params[:id])
+		task_user_c
 	end
 	
 	def update
@@ -42,6 +50,7 @@ class TasksController < ApplicationController
 	
 	def destroy
     @task = Task.find(params[:id])
+    task_user_c
     @task.destroy
 
     flash[:success] = 'Task は正常に削除されました'
@@ -52,5 +61,11 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:content, :status)
+  end
+  
+  def task_user_c
+		if @task.user_id != current_user.id.to_s
+			redirect_to root_path
+		end
   end
 end
