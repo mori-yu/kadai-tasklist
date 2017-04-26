@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require_tree ./material-design
+
+$(document).on('ready page:load', function() {
+	$.material.init();
+});
+

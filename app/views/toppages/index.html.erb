@@ -1,0 +1,10 @@
+<div class="cover">
+  <div class="cover-inner">
+    <div class="cover-contents">
+      <h1>タスク管理で効率的な生活を</h1>
+        <% unless logged_in? %>
+         	<%= link_to 'タスクリストを始める', signup_path, class: 'btn btn-raised btn-success btn-lg' %>
+        <% end %>
+    </div>
+  </div>
+</div>

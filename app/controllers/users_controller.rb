@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tasks = Task.where(user_id: current_user.id, status: "OK")
   end
 
   def new
@@ -22,6 +23,11 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
     end
+  end
+  
+  def ngs
+    @user = User.find(params[:id])
+    @tasks = Task.where(user_id: current_user.id, status: "NG")
   end
 
   private

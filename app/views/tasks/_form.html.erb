@@ -12,8 +12,12 @@
     	<% end %>
     
       <div class="form-group">
-    	  <%= f.label :title, 'ステータス' %>
-        <%= f.text_field :status, class: 'form-control' %>
+        <div class="togglebutton">
+          <label>
+            進捗</br>
+            <%= f.check_box :status, {}, checked_value = "OK", unchecked_value = "NG" %>
+          </label>
+        </div>
     	</div>
     	
     	<div class="form-group">
@@ -23,7 +27,7 @@
       
       <%= hidden_field_tag :user_id, current_user.id %>
       
-      <%= f.submit '登録', class: 'btn btn-primary' %>
+      <%= f.submit '登録', class: 'btn btn-raised btn-primary' %>
     <% end %>
   </div>
 </div>
