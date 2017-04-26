@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tasks = Task.where(user_id: current_user.id, status: "OK")
+    @tasks = Task.where(user_id: @user.id, status: "OK")
   end
 
   def new
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   
   def ngs
     @user = User.find(params[:id])
-    @tasks = Task.where(user_id: current_user.id, status: "NG")
+    @tasks = Task.where(user_id: @user.id, status: "NG")
   end
 
   private

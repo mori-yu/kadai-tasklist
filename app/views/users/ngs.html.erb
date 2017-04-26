@@ -16,11 +16,13 @@
     </ul>
     <ul>
       <% @tasks.each do |task| %>
+      	<% if @user.id.to_s == task.user_id %>
         <li>
       	  <%= link_to task.id, task %> : 
       	  <%= task.status %> >
       	  <%= task.content %>
         </li>
+      	<% end %>
       <% end %>
     </ul>
   </div>

@@ -11,9 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree ./material-design
+//= require turbolinks
 
 $(document).on('ready page:load', function() {
 	$.material.init();
